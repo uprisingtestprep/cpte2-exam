@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CPTE Exam Prep: Audio Companion</title>
+  <style>
+    :root {
+      --blue:   #1B3A6B;
+      --teal:   #0A7E8C;
+      --ltblue: #E8F4F8;
+      --white:  #FFFFFF;
+      --text:   #1A1A1A;
+      --muted:  #666;
+      --radius: 12px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: linear-gradient(135deg, var(--blue) 0%, var(--teal) 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.75rem 1rem 2.5rem;
+    }
+    header { text-align: center; color: #fff; margin-bottom: 1.25rem; }
+    header .brand { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; opacity: 0.8; text-transform: uppercase; }
+    header h1 { font-size: 1.4rem; font-weight: 800; margin-top: 0.2rem; }
+    header .subtitle { font-size: 0.85rem; opacity: 0.8; margin-top: 0.3rem; max-width: 520px; }
+
+    main {
+      width: 100%; max-width: 640px;
+      display: flex; flex-direction: column; gap: 0.85rem;
+    }
+    .chapter-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 1rem 1.1rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+    }
+    .chapter-card .num {
+      display: inline-block;
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em;
+      color: var(--teal); text-transform: uppercase;
+      margin-bottom: 0.2rem;
+    }
+    .chapter-card h2 {
+      font-size: 1.02rem; color: var(--text); margin-bottom: 0.6rem;
+      line-height: 1.3;
+    }
+    .chapter-card audio {
+      width: 100%; display: block;
+      height: 38px;
+    }
+    footer {
+      color: rgba(255,255,255,0.75); font-size: 0.75rem;
+      text-align: center; margin-top: 1.75rem; max-width: 520px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">Uprising Test Prep</div>
+    <h1>CPTE Exam Prep: Audio Companion</h1>
+    <div class="subtitle">Listen to every theory chapter read aloud. Great for review during a commute or a shift break.</div>
+  </header>
+  <main id="chapter-list"></main>
+  <footer>Tap play on any chapter below. Audio streams directly in your browser, no app or download required.</footer>
+
+  <script>
+    const CHAPTERS = [
+      { n: 1, title: "Clinical Assessment and Diagnosis", file: "ch1_clinical_assessment_and_diagnosis.m4a" },
+      { n: 2, title: "Musculoskeletal Assessment and Diagnosis", file: "ch2_musculoskeletal_assessment_and_diagnosis.m4a" },
+      { n: 3, title: "Neurological and Cardiorespiratory Assessment", file: "ch3_neurological_and_cardiorespiratory_assessment.m4a" },
+      { n: 4, title: "Care Planning and Goal Setting", file: "ch4_care_planning_and_goal_setting.m4a" },
+      { n: 5, title: "Musculoskeletal Interventions", file: "ch5_musculoskeletal_interventions.m4a" },
+      { n: 6, title: "Neurological Interventions", file: "ch6_neurological_interventions.m4a" },
+      { n: 7, title: "Cardiorespiratory and Other Systems Interventions", file: "ch7_cardiorespiratory_and_other_systems_interventions.m4a" },
+      { n: 8, title: "Client Safety and Client-Centred Care", file: "ch8_client_safety_and_client_centred_care.m4a" },
+      { n: 9, title: "Professional Responsibilities and Ethics", file: "ch9_professional_responsibilities_and_ethics.m4a" },
+      { n: 10, title: "Collaboration and Supervision", file: "ch10_collaboration_and_supervision.m4a" },
+      { n: 11, title: "Communication and Documentation", file: "ch11_communication_and_documentation.m4a" },
+      { n: 12, title: "Practice Management and Workplace Safety", file: "ch12_practice_management_and_workplace_safety.m4a" }
+    ];
+
+    const list = document.getElementById("chapter-list");
+    for (const ch of CHAPTERS) {
+      const card = document.createElement("div");
+      card.className = "chapter-card";
+      card.innerHTML = `
+        <div class="num">Chapter ${ch.n}</div>
+        <h2>${ch.title}</h2>
+        <audio controls preload="none" src="${ch.file}"></audio>
+      `;
+      list.appendChild(card);
+    }
+  </script>
+</body>
+</html>
